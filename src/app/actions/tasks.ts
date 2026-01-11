@@ -253,7 +253,7 @@ export async function getUserTasks(
     const tasksWithAverages = (data || []).map((task) => {
       const ratings = task.skill_ratings || []
       const average_rating = ratings.length > 0
-        ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length
+        ? ratings.reduce((sum: number, r: { rating: number }) => sum + r.rating, 0) / ratings.length
         : 0
 
       return {
@@ -299,7 +299,7 @@ export async function getTaskById(taskId: string): Promise<TaskWithDetails | nul
     // Calculate average rating
     const ratings = data.skill_ratings || []
     const average_rating = ratings.length > 0
-      ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length
+      ? ratings.reduce((sum: number, r: { rating: number }) => sum + r.rating, 0) / ratings.length
       : 0
 
     return {
