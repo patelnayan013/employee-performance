@@ -37,10 +37,9 @@ export async function submitTask(formData: TaskSubmissionFormData) {
     const user = await getCurrentUser()
     const supabase = await createClient()
 
-    // Validate all skills are rated
-    const skills = await getAllSkills()
-    if (formData.skill_ratings.size !== skills.length) {
-      return { error: 'All skills must be rated' }
+    // Validate at least one skill is rated
+    if (formData.skill_ratings.size === 0) {
+      return { error: 'At least one skill must be rated' }
     }
 
     // Insert task
@@ -116,10 +115,9 @@ export async function updateTask(taskId: string, formData: TaskSubmissionFormDat
       return { error: 'Not authorized to update this task' }
     }
 
-    // Validate all skills are rated
-    const skills = await getAllSkills()
-    if (formData.skill_ratings.size !== skills.length) {
-      return { error: 'All skills must be rated' }
+    // Validate at least one skill is rated
+    if (formData.skill_ratings.size === 0) {
+      return { error: 'At least one skill must be rated' }
     }
 
     // Update task

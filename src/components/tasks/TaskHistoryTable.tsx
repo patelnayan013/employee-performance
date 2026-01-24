@@ -13,6 +13,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import Badge from '@/components/ui/badge/Badge'
+import { EyeIcon, TrashBinIcon } from '@/icons'
 
 interface TaskHistoryTableProps {
   tasks: TaskWithDetails[]
@@ -194,21 +195,21 @@ export default function TaskHistoryTable({
                   </TableCell>
 
                   <TableCell className="px-5 py-4 text-end">
-                    <div className="flex justify-end gap-2">
+                    <div className="flex justify-end gap-3">
                       <Link
                         href={`/tasks/${task.id}`}
-                        className="text-brand-500 hover:text-brand-600 dark:text-brand-400 dark:hover:text-brand-300"
+                        className="inline-flex items-center justify-center rounded-lg p-2 transition-colors hover:bg-brand-50 dark:hover:bg-brand-500/10"
+                        title="View task details"
                       >
-                        <span className="text-sm">View</span>
+                        <EyeIcon className="fill-brand-500 dark:fill-brand-400" />
                       </Link>
                       <button
                         onClick={() => handleDelete(task.id)}
                         disabled={deleting === task.id}
-                        className="text-error-500 hover:text-error-600 disabled:opacity-50 dark:text-error-400 dark:hover:text-error-300"
+                        className="inline-flex items-center justify-center rounded-lg p-2 transition-colors hover:bg-error-50 disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-error-500/10"
+                        title={deleting === task.id ? 'Deleting...' : 'Delete task'}
                       >
-                        <span className="text-sm">
-                          {deleting === task.id ? 'Deleting...' : 'Delete'}
-                        </span>
+                        <TrashBinIcon className="fill-error-500 dark:fill-error-400" />
                       </button>
                     </div>
                   </TableCell>

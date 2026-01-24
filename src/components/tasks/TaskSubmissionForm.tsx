@@ -63,9 +63,9 @@ export default function TaskSubmissionForm() {
     e.preventDefault()
     setError(null)
 
-    // Validate all skills are rated
-    if (skillRatings.size !== skills.length) {
-      setError(`Please rate all ${skills.length} skills before submitting`)
+    // Validate at least one skill is rated
+    if (skillRatings.size === 0) {
+      setError('Please rate at least one skill before submitting')
       return
     }
 
